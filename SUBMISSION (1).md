@@ -13,7 +13,7 @@
 
 ---
 
-## 📋 Submission Checklist
+##  Submission Checklist
 
 | Requirement | File / Location |
 | --- | --- |
@@ -26,7 +26,7 @@
 
 ---
 
-## 🗄️ Database Schema
+##  Database Schema
 
 The full schema is in `schema.sql`. Here are the three `CREATE TABLE` statements:
 
@@ -66,7 +66,7 @@ create table if not exists iss_position (
 );
 ```
 
-### 📸 Screenshots from Supabase
+###  Screenshots from Supabase
 
 **Earthquakes table:**
 
@@ -82,13 +82,13 @@ create table if not exists iss_position (
 
 ---
 
-## 📝 Paragraph: Why I Designed the Tables This Way
+## Paragraph: Why I Designed the Tables This Way
 
 I designed each table around what makes the data unique in real life, instead of forcing all three tables to use the same shape. The `earthquakes` table uses the USGS earthquake ID as the primary key because every quake has its own permanent ID, so when the same quake comes back in a later fetch with updated info, the row just updates in place. The `weather_current` table uses the city name as the primary key because Open-Meteo does not give an ID, it only gives the current weather for a place, so I want one row per city that always holds the latest reading. The `iss_position` table only ever holds one row with a fixed ID of one, because there is only one ISS and only one current position worth showing. This design makes the upsert trick work cleanly across all three tables, since each key matches the real-world identity of the data.
 
 ---
 
-## 🌍 Data Sources Used
+## Data Sources Used
 
 1. **USGS Earthquake API**, for earthquakes in the last 24 hours worldwide
 2. **Open-Meteo**, for current weather in five cities (Johannesburg, London, New York, Tokyo, Sydney)
@@ -96,7 +96,7 @@ I designed each table around what makes the data unique in real life, instead of
 
 ---
 
-## 🎛️ Filter and Sort
+## Filter and Sort
 
 Both are on the earthquake panel:
 
