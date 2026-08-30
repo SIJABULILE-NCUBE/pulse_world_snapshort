@@ -1,0 +1,306 @@
+/* Pulse, style.css
+   Colour tokens, I kept them as CSS variables so I only have to change
+   them in one place if I want to retheme this later.
+   void = background, panel = card surface, gold = the signature colour,
+   ember = used for strong earthquakes, current = used for weather and
+   the ISS, since those feel more "in motion" than "in danger" */
+
+:root {
+  --void: #0a0d14;
+  --panel: #131826;
+  --panel-border: #232b3d;
+  --gold: #d8b03c;
+  --gold-dim: #7c6526;
+  --ember: #e2593a;
+  --current: #4fb6c7;
+  --mist: #8a93a6;
+  --paper: #edeef2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--void);
+  color: var(--paper);
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+}
+
+/* --- top bar --- */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 24px 32px 12px;
+}
+
+.brand-mark {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+}
+
+.brand-sub {
+  margin-left: 14px;
+  font-size: 13px;
+  color: var(--mist);
+}
+
+.clock {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+  color: var(--mist);
+}
+
+/* --- the pulse line, the signature element --- */
+
+.pulse-strip {
+  position: relative;
+  padding: 0 32px;
+  margin-bottom: 28px;
+}
+
+#pulse-line {
+  width: 100%;
+  height: 90px;
+  display: block;
+}
+
+.pulse-strip polyline {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 3px rgba(216, 176, 60, 0.6));
+  animation: pulse-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 1; }
+}
+
+.pulse-label {
+  position: absolute;
+  bottom: -4px;
+  right: 32px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--mist);
+}
+
+/* --- layout --- */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 20px;
+  padding: 0 32px 40px;
+}
+
+#iss-panel {
+  grid-column: 2;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  #iss-panel {
+    grid-column: 1;
+  }
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--panel-border);
+  padding-bottom: 12px;
+}
+
+.panel-head h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+}
+
+select {
+  background: var(--void);
+  color: var(--paper);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+}
+
+.loading {
+  color: var(--mist);
+  font-size: 13px;
+}
+
+/* --- earthquake cards --- */
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.quake-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--void);
+  border: 1px solid var(--panel-border);
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.quake-card.strong {
+  border-left-color: var(--ember);
+}
+
+.quake-mag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--gold);
+  min-width: 46px;
+}
+
+.quake-card.strong .quake-mag {
+  color: var(--ember);
+}
+
+.quake-info {
+  flex: 1;
+}
+
+.quake-place {
+  font-size: 14px;
+}
+
+.quake-meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--mist);
+  margin-top: 2px;
+}
+
+/* --- weather cards --- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.weather-card {
+  background: var(--void);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  padding: 14px;
+  text-align: center;
+}
+
+.weather-city {
+  font-size: 13px;
+  color: var(--mist);
+  margin-bottom: 6px;
+}
+
+.weather-temp {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 24px;
+  color: var(--current);
+}
+
+.weather-wind {
+  font-size: 11px;
+  color: var(--mist);
+  margin-top: 4px;
+}
+
+/* --- ISS card --- */
+
+.iss-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.iss-map {
+  position: relative;
+  background: var(--void);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  height: 160px;
+  background-image:
+    linear-gradient(var(--panel-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--panel-border) 1px, transparent 1px);
+  background-size: 12.5% 25%;
+}
+
+.iss-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--current);
+  box-shadow: 0 0 8px var(--current);
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+.iss-readout {
+  display: flex;
+  justify-content: space-between;
+}
+
+.iss-label {
+  display: block;
+  font-size: 11px;
+  color: var(--mist);
+}
+
+.iss-value {
+  display: block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+  color: var(--paper);
+  margin-top: 2px;
+}
+
+/* --- footer --- */
+
+.footer {
+  text-align: center;
+  color: var(--mist);
+  font-size: 12px;
+  padding: 20px 0 30px;
+}

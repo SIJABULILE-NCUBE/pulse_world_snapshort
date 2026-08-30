@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulse, a live world snapshot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">PULSE</span>
+      <span class="brand-sub">a live snapshot of Earth, right now</span>
+    </div>
+    <div class="clock" id="clock">--:--:--</div>
+  </header>
+
+  <!-- this is the signature bit, a seismograph style line built out of
+       the actual earthquake magnitudes we pulled, it's basically a
+       heartbeat monitor for the planet -->
+  <section class="pulse-strip">
+    <svg id="pulse-line" viewBox="0 0 1000 100" preserveAspectRatio="none"></svg>
+    <span class="pulse-label">last 24 hours of seismic activity, worldwide</span>
+  </section>
+
+  <main class="grid">
+
+    <!-- Earthquakes -->
+    <section class="panel" id="quakes-panel">
+      <div class="panel-head">
+        <h2>Earthquakes</h2>
+        <div class="controls">
+          <select id="mag-filter">
+            <option value="0">all magnitudes</option>
+            <option value="2.5">2.5 and up</option>
+            <option value="4">4.0 and up</option>
+            <option value="6">6.0 and up</option>
+          </select>
+          <select id="sort-order">
+            <option value="strongest">strongest first</option>
+            <option value="newest">newest first</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-list" id="quake-list">
+        <p class="loading">loading earthquakes...</p>
+      </div>
+    </section>
+
+    <!-- Weather -->
+    <section class="panel" id="weather-panel">
+      <div class="panel-head">
+        <h2>Weather right now</h2>
+      </div>
+      <div class="card-grid" id="weather-list">
+        <p class="loading">loading weather...</p>
+      </div>
+    </section>
+
+    <!-- ISS -->
+    <section class="panel" id="iss-panel">
+      <div class="panel-head">
+        <h2>The ISS, right now</h2>
+      </div>
+      <div class="iss-card">
+        <div class="iss-map" id="iss-map">
+          <div class="iss-dot" id="iss-dot"></div>
+        </div>
+        <div class="iss-readout">
+          <div>
+            <span class="iss-label">latitude</span>
+            <span class="iss-value" id="iss-lat">--</span>
+          </div>
+          <div>
+            <span class="iss-label">longitude</span>
+            <span class="iss-value" id="iss-lon">--</span>
+          </div>
+          <div>
+            <span class="iss-label">last updated</span>
+            <span class="iss-value" id="iss-time">--</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    built for the Pulse challenge, data from USGS, Open-Meteo and Open Notify
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
