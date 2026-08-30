@@ -6,7 +6,7 @@ A lightweight real-time world dashboard that collects live public data from mult
 
 - **Loom Presentation:** [PASTE LOOM LINK HERE]
 - **GitHub Repository:** [https://github.com/SIJABULILE-NCUBE/pulse_world_snapshort](https://github.com/SIJABULILE-NCUBE/pulse_world_snapshort)
-- **Live Netlify App:** [https://pulse.netlify.app](https://pulse.netlify.app)
+- **Live Vercel App:** [https://pulse-world-snapshort.vercel.app](https://pulse-world-snapshort.vercel.app)
 
 ## 📄 Submission File
 
@@ -31,7 +31,7 @@ The project intentionally keeps the user experience simple:
 - No complex frontend framework is required
 - The browser reads public-facing data from Supabase
 - The backend collection script handles API requests and database updates
-- The same data can be viewed locally or through the deployed Netlify application
+- The same data can be viewed locally or through the deployed Vercel application
 
 The main idea behind Pulse is to demonstrate how several independent external APIs can be brought together into one application, persisted in a database, and presented through a simple web interface.
 
@@ -49,7 +49,7 @@ The main goals of the project were to demonstrate the following skills:
 - Separating server-side secrets from browser-side credentials
 - Building a simple static frontend
 - Reading data from Supabase in the browser
-- Deploying a frontend to Netlify
+- Deploying a frontend to Vercel
 - Understanding the difference between a development server and a backend process
 
 ## 🏗️ Application Architecture
@@ -499,9 +499,9 @@ The browser will open the dashboard, and the frontend will read the data stored 
 
 ### Frontend Deployment
 
-The frontend is deployed to Netlify because the `public/` folder contains static web assets: `index.html`, `style.css`, and `app.js`. These files can be served by any static hosting platform.
+The frontend is deployed to Vercel because the `public/` folder contains static web assets: `index.html`, `style.css`, and `app.js`. These files can be served by any static hosting platform.
 
-Live application: [https://pulse.netlify.app](https://pulse.netlify.app)
+Live application: [https://pulse-world-snapshort.vercel.app](https://pulse-world-snapshort.vercel.app)
 
 The deployed application reads the public-facing data from Supabase using the publishable key and the Row Level Security read policies.
 
@@ -559,5 +559,5 @@ The project demonstrates practical understanding of API integration, database de
 | --- | --- |
 | 🎥 Loom Presentation | [PASTE LOOM LINK HERE] |
 | 🐙 GitHub Repository | [https://github.com/SIJABULILE-NCUBE/pulse_world_snapshort](https://github.com/SIJABULILE-NCUBE/pulse_world_snapshort) |
-| 🌐 Live Netlify Application | [https://pulse.netlify.app](https://pulse.netlify.app) |
+| 🌐 Live Vercel Application | [https://pulse-world-snapshort.vercel.app](https://pulse-world-snapshort.vercel.app) |
 | 📄 Graded Submission File | [`SUBMISSION.md`](./SUBMISSION.md) |
